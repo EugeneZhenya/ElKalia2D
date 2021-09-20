@@ -1,0 +1,182 @@
+@font-face {font-family: "Hiruko";
+    src: url("Hiruko.eot"); /* IE9*/
+    src: url("Hiruko.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Hiruko.woff2") format("woff2"), /* chrome、firefox */
+    url("Hiruko.woff") format("woff"), /* chrome、firefox */
+    url("Hiruko.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url("Hiruko.svg#Hiruko W01 Black Alternate") format("svg"); /* iOS 4.1- */
+}
+
+html { 
+  background: url(img/ssBackground.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  overflow: hidden;
+  margin: 0px;
+}
+
+#textScore {
+  position: absolute;
+  top: 8vh;
+  left: 73.5vw;
+  font-size: 4.8vh;
+  font-family: 'Hiruko';
+  color: #ffffff;
+  text-shadow: 0.7vw 0.7vh 0.7vw #000000;
+}
+
+#gameOverScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: black;
+    z-index: 1000;
+    visibility: hidden; */
+}
+
+#goYOULOSE {
+  position: absolute;
+  left: 29.266211604095566vw;
+  top: 8.433734939759036vh;
+  width: 46.41638225255973vw;
+  height: 77.59036144578313vh;
+}
+
+#goBactToMenu {
+  position: absolute;
+  left: 65.78498293515358vw;
+  top: 19.156626506024096vh;
+  width: 8.276450511945392vw;
+  height: 11.686746987951807vh;
+}
+#goBactToMenu:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#goShareButton {
+  position: absolute;
+  left: 65.78498293515358vw;
+  top: 69.87951807228916vh;
+  width: 9.129692832764505vw;
+  height: 14.337349397590363vh;
+}
+#goShareButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#goPlayButton {
+  position: absolute;
+  left: 43.600682593856654vw;
+  top: 69.87951807228916vh;
+  width: 16.467576791808874vw;
+  height: 21.686746987951808vh;
+}
+#goPlayButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#goSCORE {
+  position: absolute;
+  left: 35.921501706484643vw;
+  top: 42.57831325301205vh;
+  width: 31.8259385665529vw;
+  height: 6.144578313253012vh;
+  color: white;
+  font-family: 'Hiruko';
+  font-size: 8vh;
+  text-align: center;
+}
+
+#goHighScore {
+  position: absolute;
+  left: 36.77474402730375vw;
+  top: 51.3012048192771vh;
+  width: 31.0580204778157vw;
+  height: 11.204819277108434vh;
+  color: white;
+  font-family: 'Hiruko';
+  font-size: 7vh;
+  text-align: center;
+}
+
+#startScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#ssInsta {
+  position: absolute;
+  left: 2.9049295774647887vw;
+  top: 4.375vh;
+  width: 5.985915492957746vw;
+  height: 10.625vh;
+}
+#ssInsta:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#ssKalia {
+  position: absolute;
+  left: 68.39788732394366vw;
+  top: 9.78125vh;
+  width: 24.735915492957747vw;
+  height: 89.21875vh;
+}
+#ssTitle {
+  position: absolute;
+  left: 29.75352112676056vw;
+  top: 7.8125vh;
+  width: 40.757042253521125vw;
+  height: 61.09375vh;
+}
+
+#ssPlayButton {
+  position: absolute;
+  left: 43.309859154929575vw;
+  top: 72.65625vh;
+  width: 13.6443661971831vw;
+  height: 22.34375vh;
+}
+#ssPlayButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#ssMusicButton {
+  position: absolute;
+  left: 4.753521126760563vw;
+  top: 81.25vh;
+  width: 5.193661971830986vw;
+  height: 10.3125vh;
+}
+#ssMusicButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#ssSoundButton {
+  position: absolute;
+  left: 12.059859154929578vw;
+  top: 81.25vh;
+  width: 5.193661971830986vw;
+  height: 10.3125vh;
+}
+#ssSoundButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
