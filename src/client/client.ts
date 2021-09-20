@@ -2,7 +2,7 @@ import * as THREE from 'three'
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 // import Stats from 'three/examples/jsm/libs/stats.module'
 import * as CANNON from 'cannon-es'
-import CannonDebugRenderer from './utils/cannonDebugRenderer'
+// import CannonDebugRenderer from './utils/cannonDebugRenderer'
 
 const START_POS = 100
 const SEPARATION_DISTANCE = 40
@@ -41,7 +41,7 @@ mainLight.position.set(0, 0, 20)
 const world = new CANNON.World()
 world.gravity.set(0, -9.82, 0)
 
-let clock: THREE.Clock
+const clock = new THREE.Clock()
 let delta = 0
 
 let player: any
@@ -80,32 +80,38 @@ function PlayerCollide(e: any) {
         case 'Rocks_1.png':
             if (e.contact.ni.x > 0) {
                 player.mesh.material = playerHit[0]
+                player.mesh.material.needsUpdate = true
             }
             break
         case 'Rocks_2.png':
             if (e.contact.ni.x > 0) {
                 player.mesh.material = playerHit[0]
+                player.mesh.material.needsUpdate = true
             }
             break
         case 'Rocks_3.png':
             if (e.contact.ni.x > 0) {
                 player.mesh.material = playerHit[0]
+                player.mesh.material.needsUpdate = true
             }
             break
         case 'Rocks_4.png':
             if (e.contact.ni.x > 0) {
                 player.mesh.material = playerHit[0]
+                player.mesh.material.needsUpdate = true
             }
             break
         case 'Rocks_5.png':
             if (e.contact.ni.x > 0) {
                 player.mesh.material = playerHit[0]
+                player.mesh.material.needsUpdate = true
             }
             break
         case 'Rocks_6.png':
             if (e.contact.ni.x > 0) {
                 player.mesh.material = playerHit[0]
-                player.health -= 1
+                player.mesh.material.needsUpdate = true
+                player.health -= 25
             }
             break
     }
@@ -388,12 +394,15 @@ class WorldManager {
 
         if (player.health <= 25) {
             this.life.material = this.lifeEmpty
+            this.life.material.needsUpdate = true
         } else {
             if (player.health <= 50) {
                 this.life.material = this.lifeQuarter
+                this.life.material.needsUpdate = true
             } else {
                 if (player.health <= 75) {
                     this.life.material = this.lifeHalf
+                    this.life.material.needsUpdate = true
                 }
             }
         }
@@ -462,6 +471,7 @@ class WorldManager {
                 lifeHeart.traverse(function(child) {
                     if (child instanceof THREE.Mesh){
                         child.material = lifeBoost[1]
+                        child.material.needsUpdate = true
                     }
                 })
             }
@@ -471,6 +481,7 @@ class WorldManager {
                 lifeHeart.traverse(function(child) {
                     if (child instanceof THREE.Mesh){
                         child.material = lifeBoost[0]
+                        child.material.needsUpdate = true
                     }
                 })
             }
@@ -488,6 +499,7 @@ class WorldManager {
                         child.traverse(function(mesh) {
                             if (mesh instanceof THREE.Mesh){
                                 mesh.material = pointMaterials[1]
+                                mesh.material.needsUpdate = true
                             }
                         })
                     }
@@ -496,6 +508,7 @@ class WorldManager {
                         child.traverse(function(mesh) {
                             if (mesh instanceof THREE.Mesh){
                                 mesh.material = pointMaterials[0]
+                                mesh.material.needsUpdate = true
                             }
                         })
                     }
@@ -715,6 +728,7 @@ window.addEventListener('click', function(event) {
     if (!player.gameOver) {
         player.state = 'jump'
         player.mesh.material = playerJumping[0]
+        player.mesh.material.needsUpdate = true
         // cubeBody.position.vadd(relativeVector, cubeBody.position)
     }
 })
@@ -736,7 +750,7 @@ textScore.innerHTML = 'SCORE: 0'
 
 let HighScore = 1000
 
-const cannonDebugRenderer = new CannonDebugRenderer(scene, world)
+// const cannonDebugRenderer = new CannonDebugRenderer(scene, world)
 
 let moveVector = new CANNON.Vec3(0, 0, 0)
 function animate() {
@@ -747,7 +761,7 @@ function animate() {
     delta = Math.min(clock.getDelta(), 0.1)
     world.step(delta)
 
-    cannonDebugRenderer.update()
+    // cannonDebugRenderer.update()
 
     let moveVector2 = new CANNON.Vec3(-0.1, 0, 0)
 
@@ -762,6 +776,7 @@ function animate() {
             player.state = 'land'
         }
         player.mesh.material = playerJumping[1]
+        player.mesh.material.needsUpdate = true
     }
     // console.log(cubeBody.position.y, player.state)
     if (player.state === 'run' && !player.gameOver) {
@@ -769,11 +784,12 @@ function animate() {
         if (player.spriteFrame > 10) player.spriteFrame = 0;
 
         player.mesh.material = playerRunning[Math.round(player.spriteFrame)]
-        // player.mesh.material.needsUpdate = true;
+        player.mesh.material.needsUpdate = true
     }
 
     if (player.state === 'land' && !player.gameOver)  {
         player.mesh.material = playerLanding
+        player.mesh.material.needsUpdate = true
         if (player.body.position.y < -2) {
             player.state = 'run'
         }
@@ -954,7 +970,7 @@ function CheckCollisions() {
     monster.monsterBox.setFromObject(monster.mesh)
     if (monster.monsterBox.intersectsBox(player.playerBox)) {
         // console.log('EAT!')
-        player.health -= 1
+        player.health -= .5
     }
 
     const heart = scene.getObjectByName('LifeHeart')
@@ -966,7 +982,7 @@ function CheckCollisions() {
             monster.mesh.position.x = -20
             // monster.mesh.position.x -= 5
             scene.remove(heart)
-            pershcodes.Update(0);
+            pershcodes.Update(0)
         }
     }
 
@@ -1032,6 +1048,8 @@ function StartScreen() {
         Initial()
     })
     startScreen.appendChild(ssPlayButton)
+
+    backAudio.muted = !isMusic
     const ssMusicButton = document.createElement('img')
     ssMusicButton.id = 'ssMusicButton'
     if (isMusic) {
@@ -1041,6 +1059,7 @@ function StartScreen() {
     }
     ssMusicButton.addEventListener("click", (e:Event) => {
         isMusic = !isMusic
+        backAudio.muted = !isMusic
         if (isMusic) {
             ssMusicButton.src = 'img/MusicButton.png'
         } else {
@@ -1069,9 +1088,6 @@ function StartScreen() {
 StartScreen()
 
 function Initial() {
-    clock = new THREE.Clock()
-    delta = 0
-
     backAudio.muted = !isMusic
     backAudio.play()
 
